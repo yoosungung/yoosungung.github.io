@@ -16,10 +16,10 @@
 ###
 //@hostURL = http://172.21.237.115:3000/
 @hostURL = http://localhost:3000
-'''
+```
 
  - 권한 토근 저장
-'''
+```
 ###
 # @name signin
 POST {{hostURL}}/sign/in
@@ -32,10 +32,10 @@ content-type: application/json
 
 ###
 @authToken = {{signin.response.headers.x-access-token}}
-'''
+```
 
  - 권한 토큰을 이용한 rest 호출
-'''
+```
 ###
 GET {{hostURL}}/api/summary/master/opportunity?visible=owner
 content-type: application/json
@@ -61,10 +61,10 @@ x-access-token: {{authToken}}
     "rejected": {}
   }
 }
-'''
+```
 
  - response body 값을 이용한 rest 호출
-'''
+```
 ###
 @txmachineId = {{createmachine.response.body.$.insertId}}
 
