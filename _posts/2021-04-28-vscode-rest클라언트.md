@@ -11,7 +11,8 @@
    변수 사용은 {{ 변수 }}로 사용 합니다.
 
 4. 예시
- - url을 변수로 처리  
+ - url을 변수로 처리
+ 
 ```
 ###
 //@hostURL = http://172.21.237.115:3000/
@@ -19,6 +20,7 @@
 ```
 
  - 권한 토근 저장
+ 
 ```
 ###
 # @name signin
@@ -35,6 +37,7 @@ content-type: application/json
 ```
 
  - 권한 토큰을 이용한 rest 호출
+ 
 ```
 ###
 GET {{hostURL}}/api/summary/master/opportunity?visible=owner
@@ -64,6 +67,7 @@ x-access-token: {{authToken}}
 ```
 
  - response body 값을 이용한 rest 호출
+ 
 ```
 ###
 @txmachineId = {{createmachine.response.body.$.insertId}}
@@ -95,5 +99,4 @@ x-access-token: {{authToken}}
 DELETE {{hostURL}}/state/machines/{{xmachineId}}
 content-type: application/json
 x-access-token: {{authToken}}
-
 ```
