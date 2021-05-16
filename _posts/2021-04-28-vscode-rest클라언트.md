@@ -1,3 +1,10 @@
+---
+layout: posts
+title: VS Code RestClient 사용법
+categories: [tool]
+tags: [vscode, rest]
+---
+
 1. VSCode의 Rest Client 확장을 설치합니다.  
 
 2. 확장자가 http인 파일을 생성합니다.
