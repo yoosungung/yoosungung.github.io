@@ -12,8 +12,14 @@ tags: [git, wsl2, markdown]
    [git 책](http://git-scm.com/book/ko/v2)  
    [마크다운 문법](https://gist.github.com/ihoneymon/652be052a0727ad59601)  
    [github 블로그 만들기](https://velog.io/@shg4821/%EA%B9%83%ED%97%88%EB%B8%8C-%EB%B8%94%EB%A1%9C%EA%B7%B8-%EB%A7%8C%EB%93%A4%EA%B8%B0-1)
+   
+   
 2. 과제 (5/23 ~ 5/30)
- - VSCode와 wsl로 개발환경 구성합니다.
+ - VSCode와 wsl2(docker)로 개발환경 구성합니다.
  - 참고자료  
    [wsl로 ubuntu 설치](https://www.youtube.com/watch?v=Y_6PGpcvYW8&list=PLb9aAqiVOvUUx2JxfTaw10VycL7keumX-&index=2)  
-   [Windows 10에 Linux용 Windows 하위 시스템 설치 가이드](https://docs.microsoft.com/ko-kr/windows/wsl/install-win10)
+   [VS Code 설치](https://code.visualstudio.com/)  
+   [VS Code 확장 설치](https://www.google.com/search?q=vscode+%ED%95%84%EC%88%98)  
+   [Windows 10에 Linux용 Windows 하위 시스템 설치 가이드](https://docs.microsoft.com/ko-kr/windows/wsl/install-win10)  
+   [WSL 2에서 Docker 원격 컨테이너 시작](https://docs.microsoft.com/ko-kr/windows/wsl/tutorials/wsl-containers)
+  
