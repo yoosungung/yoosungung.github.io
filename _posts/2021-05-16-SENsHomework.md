@@ -5,6 +5,8 @@ categories: [homework]
 tags: [git, wsl2, markdown]
 ---
 
+### 기본 환경
+
 1. 과제 (5/16 ~ 5/23)
  - GitHub에 계정을 만들고, Blog를 만들어 MD로 포스팅 합니다.
  - 참고자료  
@@ -23,3 +25,26 @@ tags: [git, wsl2, markdown]
    [Windows 10에 Linux용 Windows 하위 시스템 설치 가이드](https://docs.microsoft.com/ko-kr/windows/wsl/install-win10)  
    [WSL 2에서 Docker 원격 컨테이너 시작](https://docs.microsoft.com/ko-kr/windows/wsl/tutorials/wsl-containers)
   
+
+3. 과제 (5/31 ~ 6/5)
+ - AWS에 계정을 만들고 EC2를 설정 합니다. (MS Azue 인지 확인 필요)
+ - 참고자료
+   [AWS 프리티어 가입](https://hoing.io/archives/3473) - MFA / 2FA는 안해도 됨  
+   [AWS EC2(VM) 만들기](https://hoing.io/archives/3510) - 접속은 wsl에서 (mac 방법으로) 합니다. 요금 부분을 꼭 확인 하세요.  
+   [AWS 고정 IP 설정](https://hoing.io/archives/3558) - 요금 부분을 꼭 확인 하세요.  
+   [Mysql 설치](https://dejavuqa.tistory.com/317)
+   [nginx 설치](https://velog.io/@byjihye/ubuntu2)(https://valuefactory.tistory.com/165)    
+   [AWS에서 도메인 관리](https://hoing.io/archives/3883) - 용돈이 남으면 내 도메인을 달아 보는것도 기쁨이지 (일단 blog에) ...  
+
+
+5. 과제 (6/6 ~ 6/12)
+ - PWA을 개발 합니다. (vue - express - Mysql)
+
+6. 과제 (6/13 ~ 6/19)
+ - Serverless 개발을 합니다. (ApiGateway - Lambda - DynamoDB)
+
+### candydate 구현
+1. 과제 (6/20 ~ 6/26)
+ - python으로 웹 크롤링을 합니다. 
+
+2.  
