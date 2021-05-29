@@ -32,7 +32,7 @@ tags: [git, wsl2, markdown]
    [AWS 프리티어 가입](https://hoing.io/archives/3473) - MFA / 2FA는 안해도 됨  
    [AWS EC2(VM) 만들기](https://hoing.io/archives/3510) - 접속은 wsl에서 (mac 방법으로) 합니다. 요금 부분을 꼭 확인 하세요.  
    [AWS 고정 IP 설정](https://hoing.io/archives/3558) - 요금 부분을 꼭 확인 하세요.  
-   [Mysql 설치](https://dejavuqa.tistory.com/317)
+   [Mysql 설치](https://dejavuqa.tistory.com/317)  
    [nginx 설치](https://velog.io/@byjihye/ubuntu2)  
    [nginx와 nodejs 같이사용](https://valuefactory.tistory.com/165)    
    [AWS에서 도메인 관리](https://hoing.io/archives/3883) - 용돈이 남으면 내 도메인을 달아 보는것도 기쁨이지 (일단 blog에) ...  
