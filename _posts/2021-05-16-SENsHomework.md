@@ -37,11 +37,11 @@ tags: [git, wsl2, markdown]
    [nginx와 nodejs 같이사용](https://valuefactory.tistory.com/165)    
    [AWS에서 도메인 관리](https://hoing.io/archives/3883) - 용돈이 남으면 내 도메인을 달아 보는것도 기쁨이지 (일단 blog에) ...  
 
-
-5. 과제 (6/6 ~ 6/12)
+### PWA 구현
+1. 과제 (6/6 ~ 6/12)
  - PWA을 개발 합니다. (vue - express - Mysql)
 
-6. 과제 (6/13 ~ 6/19)
+2. 과제 (6/13 ~ 6/19)
  - Serverless 개발을 합니다. (ApiGateway - Lambda - DynamoDB)
 
 ### candydate 구현
