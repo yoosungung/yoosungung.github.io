@@ -53,6 +53,7 @@ tags: [git, wsl2, markdown]
    [VSCode 파이션 사용](https://code.visualstudio.com/docs/python/python-tutorial) - WSL2에 python3는 이미 설치되 있습니다.  
    [파이션 클로링](https://www.youtube.com/watch?v=hKApZHK_fOQ&list=PL5bK87xH5V1xkEvVYBupHYNUtIEAiLIzL)  
    [BeautifulSoup 사용법](https://wikidocs.net/85739)  
+   [CSS선택자](https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Selectors)  
 
 2. 과제 
  - 업무 모델링 (MySQL)
