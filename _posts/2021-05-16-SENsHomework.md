@@ -48,11 +48,11 @@ tags: [git, wsl2, markdown]
 1. 과제 (6/14 ~ 6/18)
  - python으로 웹 크롤링을 합니다. 
  - 참고자료  
-   [파이션 문법책](http://byteofpython-korean.sourceforge.net/byte_of_python.pdf)
-   [PIP사용법](https://dora-guide.com/pip-install/)
-   [VSCode 파이션 사용](https://code.visualstudio.com/docs/python/python-tutorial) - WSL2에 python3는 이미 설치되 있습니다.
-   [파이션 클로링](https://www.youtube.com/watch?v=hKApZHK_fOQ&list=PL5bK87xH5V1xkEvVYBupHYNUtIEAiLIzL)
-   [BeautifulSoup 사용법](https://wikidocs.net/85739)
+   [파이션 문법책](http://byteofpython-korean.sourceforge.net/byte_of_python.pdf)  
+   [PIP사용법](https://dora-guide.com/pip-install/)  
+   [VSCode 파이션 사용](https://code.visualstudio.com/docs/python/python-tutorial) - WSL2에 python3는 이미 설치되 있습니다.  
+   [파이션 클로링](https://www.youtube.com/watch?v=hKApZHK_fOQ&list=PL5bK87xH5V1xkEvVYBupHYNUtIEAiLIzL)  
+   [BeautifulSoup 사용법](https://wikidocs.net/85739)  
 
 2. 과제 
  - 업무 모델링 (MySQL)
