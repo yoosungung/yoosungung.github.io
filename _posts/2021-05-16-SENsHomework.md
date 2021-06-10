@@ -26,7 +26,7 @@ tags: [git, wsl2, markdown]
    [WSL 2에서 Docker 원격 컨테이너 시작](https://docs.microsoft.com/ko-kr/windows/wsl/tutorials/wsl-containers)
   
 
-3. 과제 (5/31 ~ 6/5)
+3. 과제 (5/31 ~ 6/11)
  - AWS에 계정을 만들고 EC2를 설정 합니다. (MS Azue 인지 확인 필요)
  - 참고자료
    [AWS 프리티어 가입](https://hoing.io/archives/3473) - MFA / 2FA는 안해도 됨  
@@ -38,14 +38,24 @@ tags: [git, wsl2, markdown]
    [AWS에서 도메인 관리](https://hoing.io/archives/3883) - 용돈이 남으면 내 도메인을 달아 보는것도 기쁨이지 (일단 blog에) ...  
 
 ### PWA 구현
-1. 과제 (6/6 ~ 6/12)
+1. 과제
  - PWA을 개발 합니다. (vue - express - Mysql)
 
-2. 과제 (6/13 ~ 6/19)
+2. 과제
  - Serverless 개발을 합니다. (ApiGateway - Lambda - DynamoDB)
 
-### candydate 구현
-1. 과제 (6/20 ~ 6/26)
+### text mining 구현
+1. 과제 (6/14 ~ 6/18)
  - python으로 웹 크롤링을 합니다. 
+ - 참고자료  
+   [파이션 문법책](http://byteofpython-korean.sourceforge.net/byte_of_python.pdf)
+   [PIP사용법](https://dora-guide.com/pip-install/)
+   [VSCode 파이션 사용](https://code.visualstudio.com/docs/python/python-tutorial) - WSL2에 python3는 이미 설치되 있습니다.
+   [파이션 클로링](https://www.youtube.com/watch?v=hKApZHK_fOQ&list=PL5bK87xH5V1xkEvVYBupHYNUtIEAiLIzL)
+   [BeautifulSoup 사용법](https://wikidocs.net/85739)
 
-2.  
+2. 과제 
+ - 업무 모델링 (MySQL)
+
+3. 과제
+ - text mining 방안 (문서 군집, 문서 요약)
