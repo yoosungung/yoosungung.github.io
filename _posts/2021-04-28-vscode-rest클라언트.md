@@ -31,7 +31,7 @@ tags: [vscode, rest]
 ```
 ###
 # @name signin
-POST {{hostURL}}/sign/in
+POST { { hostURL } }/sign/in
 content-type: application/json
 
 {
