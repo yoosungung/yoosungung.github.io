@@ -15,7 +15,7 @@ tags: [vscode, rest]
  - 아래 header정보를 입력 합니다.
  - body는 한줄 띄고 여러줄로 입력합니다.
  - 변수 선언은 @이름 = 값을 입력 합니다.
-   변수 사용은 {{ 변수 }}로 사용 합니다.
+   변수 사용은 { { 변수 } }로 사용 합니다.
 
 4. 예시
  - url을 변수로 처리
@@ -31,7 +31,7 @@ tags: [vscode, rest]
 ```
 ###
 # @name signin
-POST { { hostURL } }/sign/in
+POST { {hostURL} }/sign/in
 content-type: application/json
 
 {
@@ -40,35 +40,35 @@ content-type: application/json
 }
 
 ###
-@authToken = {{signin.response.headers.x-access-token}}
+@authToken = { {signin.response.headers.x-access-token} }
 ```
 
  - 권한 토큰을 이용한 rest 호출
  
 ```
 ###
-GET {{hostURL}}/api/summary/master/opportunity?visible=owner
+GET { {hostURL} }/api/summary/master/opportunity?visible=owner
 content-type: application/json
-x-access-token: {{authToken}}
+x-access-token: { {authToken} }
 
 ###
-GET {{hostURL}}/state/machines
+GET { {hostURL} }/state/machines
 content-type: application/json
-x-access-token: {{authToken}}
+x-access-token: { {authToken} }
 
 ###
 # @name createmachine
-POST {{hostURL}}/state/machines/test
+POST { {hostURL} }/state/machines/test
 content-type: application/json
-x-access-token: {{authToken}}
+x-access-token: { {authToken} }
 
 {
   "id": "body",
   "initial": "pending",
   "states": {
-    "pending": {},
-    "resolved": {},
-    "rejected": {}
+    "pending": { },
+    "resolved": { },
+    "rejected": { }
   }
 }
 ```
@@ -77,33 +77,33 @@ x-access-token: {{authToken}}
  
 ```
 ###
-@txmachineId = {{createmachine.response.body.$.insertId}}
+@txmachineId = { {createmachine.response.body.$.insertId} }
 
 ###
-GET {{hostURL}}/state/machines/{{xmachineId}}
+GET { {hostURL} }/state/machines/{ {xmachineId} }
 content-type: application/json
-x-access-token: {{authToken}}
+x-access-token: { {authToken} }
 
 ###
 # @name start
-POST {{hostURL}}/state/machines/start/{{xmachineId}}
+POST { {hostURL} }/state/machines/start/{ {xmachineId} }
 content-type: application/json
-x-access-token: {{authToken}}
+x-access-token: { {authToken} }
 
-{}
+{ }
 
 ###
-@xstate = {{start.response.body.$}}
+@xstate = { {start.response.body.$} }
 
 ###
-POST {{hostURL}}/state/interpreter/{{xmachineId}}
+POST { {hostURL} }/state/interpreter/{ {xmachineId} }
 content-type: application/json
-x-access-token: {{authToken}}
+x-access-token: { {authToken} }
 
-{{xstate}}
+{ {xstate} }
 
 ###
-DELETE {{hostURL}}/state/machines/{{xmachineId}}
+DELETE { {hostURL} }/state/machines/{ {xmachineId} }
 content-type: application/json
-x-access-token: {{authToken}}
+x-access-token: { {authToken} }
 ```
