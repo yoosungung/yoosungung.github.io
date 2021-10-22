@@ -1,3 +1,10 @@
+---
+layout: posts
+title: 아마존상태언어 (Aws Status Language)
+categories: [aws]
+tags: [aws, stepfunction]
+---
+
 <div id="intro">
 
 # Amazon States Language
