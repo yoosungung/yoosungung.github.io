@@ -1,162 +1,162 @@
 <div id="intro">
 
-# 아마존 주언어
+# Amazon States Language
 
-이 문서에서는 상태 컴퓨터를 선언적으로 설명하는 데 사용되는 [JSON](https://tools.ietf.org/html/rfc8259)기반 언어에 대해 설명합니다. 따라서 정의된 상태 컴퓨터는 소프트웨어에 의해 실행될 수 있습니다. 이 문서에서는 소프트웨어를 "인터프리터"라고 합니다.
+This document describes a [JSON](https://tools.ietf.org/html/rfc8259)-based language used to describe state machines declaratively. The state machines thus defined may be executed by software. In this document, the software is referred to as "the interpreter".
 
 </div>
 
-저작권 © 2016 Amazon.com 주식회사 또는 계열사.
+Copyright © 2016 Amazon.com Inc. or Affiliates.
 
-본 약관에 따라 본 명세서 및 관련 문서 파일("사양")의 사본을 획득한 사람에게 는 다음 조건에 따라 사용, 복사, 게시 및/또는 배포할 수 있는 권한이 무료로 부여됩니다.
+Permission is hereby granted, free of charge, to any person obtaining a copy of this specification and associated documentation files (the "specification"), to use, copy, publish, and/or distribute, the Specification) subject to the following conditions:
 
-상기 저작권 고지 및 본 허가 통지는 사양의 모든 사본에 포함됩니다.
+The above copyright notice and this permission notice shall be included in all copies of the Specification.
 
-명세서의 복사본을 수정, 병합, 하위 라이선스 및/또는 판매할 수 없습니다.
+You may not modify, merge, sublicense, and/or sell copies of the Specification.
 
-이 사양은 가맹점의 보증, 특정 목적에 대한 적합성 및 침해를 포함하되 이에 국한되지 않는 어떠한 종류의 보증없이 "있는 바와 같이"제공됩니다. 어떠한 경우에도 저자 또는 저작권 소유자는 계약, 불법 행위 또는 기타 계약, 규정 또는 기타 의 어떠한 클레임, 손해 또는 기타 책임에 대해 책임을 지지 않습니다.
+THE SPECIFICATION IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SPECIFICATION OR THE USE OR OTHER DEALINGS IN THE SPECIFICATION.​
 
-사양에 포함된 모든 샘플 코드는 달리 명시되지 않는 한 아파치 라이센스 버전 2.0에 따라 라이선스가 부여됩니다.
+Any sample code included in the Specification, unless otherwise specified, is licensed under the Apache License, Version 2.0.
 
 <div id="toc">
 
 <div>
 
-## 내용물 표
+## Table of Contents
 
-*   상태 기계의 구조
+*   Structure of a State Machine
 
     *   [](https://states-language.net/spec.html#example)
 
-        [예: 헬로 월드](https://states-language.net/spec.html#example)
+        [Example: Hello World](https://states-language.net/spec.html#example)
 
         [](https://states-language.net/spec.html#example)
     *   [](https://states-language.net/spec.html#toplevelfields)
 
-        [최상위 필드](https://states-language.net/spec.html#toplevelfields)
+        [Top-level fields](https://states-language.net/spec.html#toplevelfields)
 
         [](https://states-language.net/spec.html#toplevelfields)
-*   개념
+*   Concepts
 
     *   [](https://states-language.net/spec.html#states-fields)
 
-        [상태](https://states-language.net/spec.html#states-fields)
+        [States](https://states-language.net/spec.html#states-fields)
 
         [](https://states-language.net/spec.html#states-fields)
     *   [](https://states-language.net/spec.html#transition)
 
-        [전환](https://states-language.net/spec.html#transition)
+        [Transitions](https://states-language.net/spec.html#transition)
 
         [](https://states-language.net/spec.html#transition)
     *   [](https://states-language.net/spec.html#timestamps)
 
-        [타임 스탬프](https://states-language.net/spec.html#timestamps)
+        [Timestamps](https://states-language.net/spec.html#timestamps)
 
         [](https://states-language.net/spec.html#timestamps)
     *   [](https://states-language.net/spec.html#data)
 
-        [데이터](https://states-language.net/spec.html#data)
+        [Data](https://states-language.net/spec.html#data)
 
         [](https://states-language.net/spec.html#data)
     *   [](https://states-language.net/spec.html#context-object)
 
-        [컨텍스트 개체](https://states-language.net/spec.html#context-object)
+        [The Context Object](https://states-language.net/spec.html#context-object)
 
         [](https://states-language.net/spec.html#context-object)
     *   [](https://states-language.net/spec.html#path)
 
-        [경로](https://states-language.net/spec.html#path)
+        [Paths](https://states-language.net/spec.html#path)
 
         [](https://states-language.net/spec.html#path)
     *   [](https://states-language.net/spec.html#ref-paths)
 
-        [참조 경로](https://states-language.net/spec.html#ref-paths)
+        [Reference Paths](https://states-language.net/spec.html#ref-paths)
 
         [](https://states-language.net/spec.html#ref-paths)
     *   [](https://states-language.net/spec.html#payload-template)
 
-        [페이로드 템플릿](https://states-language.net/spec.html#payload-template)
+        [Payload Template](https://states-language.net/spec.html#payload-template)
 
         [](https://states-language.net/spec.html#payload-template)
     *   [](https://states-language.net/spec.html#intrinsic-functions)
 
-        [본질적인 기능](https://states-language.net/spec.html#intrinsic-functions)
+        [Intrinsic Functions](https://states-language.net/spec.html#intrinsic-functions)
 
         [](https://states-language.net/spec.html#intrinsic-functions)
     *   [](https://states-language.net/spec.html#filters)
 
-        [입력 및 출력 처리](https://states-language.net/spec.html#filters)
+        [Input and Output Processing](https://states-language.net/spec.html#filters)
 
         [](https://states-language.net/spec.html#filters)
     *   [](https://states-language.net/spec.html#errors)
 
-        [오류](https://states-language.net/spec.html#errors)
+        [Errors](https://states-language.net/spec.html#errors)
 
         [](https://states-language.net/spec.html#errors)
-*   상태 유형
+*   State Types
 
     *   [](https://states-language.net/spec.html#state-type-table)
 
-        [상태 유형 및 필드 테이블](https://states-language.net/spec.html#state-type-table)
+        [Table of State Types and Fields](https://states-language.net/spec.html#state-type-table)
 
         [](https://states-language.net/spec.html#state-type-table)
     *   [](https://states-language.net/spec.html#pass-state)
 
-        [패스 스테이트](https://states-language.net/spec.html#pass-state)
+        [Pass State](https://states-language.net/spec.html#pass-state)
 
         [](https://states-language.net/spec.html#pass-state)
     *   [](https://states-language.net/spec.html#task-state)
 
-        [작업 상태](https://states-language.net/spec.html#task-state)
+        [Task State](https://states-language.net/spec.html#task-state)
 
         [](https://states-language.net/spec.html#task-state)
     *   [](https://states-language.net/spec.html#choice-state)
 
-        [선택 상태](https://states-language.net/spec.html#choice-state)
+        [Choice State](https://states-language.net/spec.html#choice-state)
 
         [](https://states-language.net/spec.html#choice-state)
     *   [](https://states-language.net/spec.html#wait-state)
 
-        [대기 상태](https://states-language.net/spec.html#wait-state)
+        [Wait State](https://states-language.net/spec.html#wait-state)
 
         [](https://states-language.net/spec.html#wait-state)
     *   [](https://states-language.net/spec.html#succeed-state)
 
-        [성공 상태](https://states-language.net/spec.html#succeed-state)
+        [Succeed State](https://states-language.net/spec.html#succeed-state)
 
         [](https://states-language.net/spec.html#succeed-state)
     *   [](https://states-language.net/spec.html#fail-state)
 
-        [실패 상태](https://states-language.net/spec.html#fail-state)
+        [Fail State](https://states-language.net/spec.html#fail-state)
 
         [](https://states-language.net/spec.html#fail-state)
     *   [](https://states-language.net/spec.html#parallel-state)
 
-        [병렬 상태](https://states-language.net/spec.html#parallel-state)
+        [Parallel State](https://states-language.net/spec.html#parallel-state)
 
         [](https://states-language.net/spec.html#parallel-state)
     *   [](https://states-language.net/spec.html#map-state)
 
-        [지도 상태](https://states-language.net/spec.html#map-state)
+        [Map State](https://states-language.net/spec.html#map-state)
 
         [](https://states-language.net/spec.html#map-state)
-*   부록
+*   Appendices
 
     *   [](https://states-language.net/spec.html#appendix-a)
 
-        [부록 A: 미리 정의된 오류 코드](https://states-language.net/spec.html#appendix-a)
+        [Appendix A: Predefined Error Codes](https://states-language.net/spec.html#appendix-a)
 
         [](https://states-language.net/spec.html#appendix-a)
     *   [](https://states-language.net/spec.html#appendix-b)
 
-        [부록 B: 본질적인 기능 목록](https://states-language.net/spec.html#appendix-b)
+        [Appendix B: List of Intrinsic Functions](https://states-language.net/spec.html#appendix-b)
 
         [](https://states-language.net/spec.html#appendix-b)
-*   문서 기록
+*   Document History
 
     *   [](https://states-language.net/spec.html#2020-08-11)
 
-        [2020년 8월 11일](https://states-language.net/spec.html#2020-08-11)
+        [August 11, 2020](https://states-language.net/spec.html#2020-08-11)
 
         [](https://states-language.net/spec.html#2020-08-11)
 
@@ -166,13 +166,13 @@
 
 <div id="structure">
 
-## 상태 기계의 구조
+## Structure of a State Machine
 
-상태 컴퓨터는 [JSON 개체로](https://tools.ietf.org/html/rfc8259#section-4)표시됩니다.
+A State Machine is represented by a [JSON Object](https://tools.ietf.org/html/rfc8259#section-4).
 
-### 예: 헬로 월드
+### Example: Hello World
 
-상태 컴퓨터의 작업은 JSON 개체로 표시되는 상태, 최상위 "상태" 개체의 필드에 의해 지정됩니다. 이 예제에서는 "Hello World"라는 한 가지 상태가 있습니다.
+The operation of a state machine is specified by states, which are represented by JSON objects, fields in the top-level "States" object. In this example, there is one state named "Hello World".
 
     {
         "Comment": "A simple minimal example of the States language",
@@ -186,35 +186,35 @@
       }
     }
 
-이 상태 컴퓨터가 시작되면 인터프리터는 시작 상태를 식별하여 실행을 시작합니다. 해당 상태를 실행한 다음 상태를 종료 상태로 표시하는지 확인합니다. 이 경우 기기가 종료되고 결과를 반환합니다. 상태가 종료 상태가 아닌 경우 인터프리터는 다음에 실행할 상태를 결정하기 위해 "다음" 필드를 찾습니다. 터미널 상태(성공, 실패 또는 종료 [상태)에](https://states-language.net/spec.html#terminal-state) 도달하거나 런타임 오류가 발생할 때까지 이 프로세스를 반복합니다.
+When this state machine is launched, the interpreter begins execution by identifying the Start State. It executes that state, and then checks to see if the state is marked as an End State. If it is, the machine terminates and returns a result. If the state is not an End State, the interpreter looks for a "Next" field to determine what state to run next; it repeats this process until it reaches a [Terminal State](https://states-language.net/spec.html#terminal-state) (Succeed, Fail, or an End State) or a runtime error occurs.
 
-이 예제에서는 기기에 "Hello World"라는 단일 상태가 포함되어 있습니다. "Hello World"는 작업 상태이므로 통역사가 작업 상태이므로 이를 실행하려고 합니다. "리소스" 필드의 값을 살펴보면 람다 함수를 가리키므로 통역사가 해당 함수를 호출하려고 시도합니다. Lambda 함수가 성공적으로 실행되면 컴퓨터가 성공적으로 종료됩니다.
+In this example, the machine contains a single state named "Hello World". Because "Hello World" is a Task State, the interpreter tries to execute it. Examining the value of the "Resource" field shows that it points to a Lambda function, so the interpreter attempts to invoke that function. Assuming the Lambda function executes successfully, the machine will terminate successfully.
 
-상태 컴퓨터는 JSON 개체로 표시됩니다.
+A State Machine is represented by a JSON object.
 
-### 최상위 필드
+### Top-level fields
 
-상태 컴퓨터는 필드가 상태를 나타내는 "상태"라는 개체 필드가 있어야 합니다.
+A State Machine MUST have an object field named "States", whose fields represent the states.
 
-상태 컴퓨터에는 "StartAt"라는 문자열 필드가 있어야 하며, 값은 "상태" 필드의 이름 중 하나와 정확히 일치해야 합니다. 인터프리터는 지정된 상태에서 컴퓨터를 실행하기 시작합니다.
+A State Machine MUST have a string field named "StartAt", whose value MUST exactly match one of names of the "States" fields. The interpreter starts running the the machine at the named state.
 
-상태 컴퓨터에 사람이 읽을 수 있는 설명을 위해 제공된 "주석"이라는 문자열 필드가 있을 수 있습니다.
+A State Machine MAY have a string field named "Comment", provided for human-readable description of the machine.
 
-상태 컴퓨터에 사용되는 상태 언어의 버전을 제공하는 "버전"이라는 문자열 필드가 있을 수 있습니다. 이 문서에서는 버전 1.0에 대해 설명하며 생략된 경우 "버전"의 기본 값은 문자열 "1.0"입니다.
+A State Machine MAY have a string field named "Version", which gives the version of the States language used in the machine. This document describes version 1.0, and if omitted, the default value of "Version" is the string "1.0".
 
-<font _mstmutation="1" _msthash="250081" _msttexthash="3270739160">상태 컴퓨터에는 "TimeoutSeconds"라는 정수 필드가 있을 수 있습니다. 제공된 경우 기기를 실행할 수 있는 최대 초 수를 제공합니다. 컴퓨터가 지정된 시간보다 오래 실행되면 통역사가 [오류 이름으로](https://states-language.net/spec.html#error-names)컴퓨터에 실패합니다.</font>`States.Timeout`
+A State Machine MAY have an integer field named "TimeoutSeconds". If provided, it provides the maximum number of seconds the machine is allowed to run. If the machine runs longer than the specified time, then the interpreter fails the machine with a `States.Timeout` [Error Name](https://states-language.net/spec.html#error-names).
 
 </div>
 
 <div id="body">
 
-## 개념
+## Concepts
 
-### 상태
+### States
 
-상태는 최상위 "상태" 개체의 필드로 표시됩니다. 길이가 128개 유니코드 문자보다 작거나 같아야 하는 상태 이름은 필드 이름입니다. 상태 이름은 전체 상태 컴퓨터의 범위 내에서 고유해야 합니다. 상태는 작업(작업 단위)을 설명하거나 흐름 제어(예: Choice)를 지정합니다.
+States are represented as fields of the top-level "States" object. The state name, whose length MUST BE less than or equal to 128 Unicode characters, is the field name; state names MUST be unique within the scope of the whole state machine. States describe tasks (units of work), or specify flow control (e.g. Choice).
 
-다음은 람다 함수를 실행하는 예제 상태입니다.
+Here is an example state that executes a Lambda function:
 
     "HelloWorld": {
       "Type": "Task",
@@ -223,35 +223,35 @@
       "Comment": "Executes the HelloWorld Lambda function"
     }
 
-참고:
+Note that:
 
-1.  모든 주에는 "유형" 필드가 있어야 합니다. 이 문서에서는 이 필드의 값을 상태의 _형식으로,_위의 예제와 같은 상태를 작업 상태로 지칭합니다.
+1.  All states MUST have a "Type" field. This document refers to the values of this field as a state’s _type_, and to a state such as the one in the example above as a Task State.
 
-2.  모든 주에는 사람이 읽을 수 있는 의견이나 설명을 보유하기 위해 "주석" 필드가 있을 수 있습니다.
+2.  Any state MAY have a "Comment" field, to hold a human-readable comment or description.
 
-3.  대부분의 상태 유형에는 이 문서에 지정된 대로 추가 필드가 필요합니다.
+3.  Most state types require additional fields as specified in this document.
 
-4.  <font _mstmutation="1" _msthash="252733" _msttexthash="1115594220">선택, 성공 및 실패를 제외한 모든 주에는 가치가 부울 수 있어야 하는 "끝"이라는 필드가 있을 수 있습니다. "터미널 상태"라는 용어는 .</font>`{ "End": true }``{ "Type": "Succeed" }``{ "Type": "Fail" }`
+4.  Any state except for Choice, Succeed, and Fail MAY have a field named "End" whose value MUST be a boolean. The term "Terminal State" means a state with with `{ "End": true }`, or a state with `{ "Type": "Succeed" }`, or a state with `{ "Type": "Fail" }`.
 
-### 전환
+### Transitions
 
-전환은 상태를 함께 연결하여 상태 컴퓨터에 대한 제어 흐름을 정의합니다. 터미널이 아닌 상태를 실행한 후 인터프리터는 다음 상태로의 전환을 따릅니다. 대부분의 상태 형식의 경우 전환은 무조건적이며 상태의 "Next" 필드를 통해 지정됩니다.
+Transitions link states together, defining the control flow for the state machine. After executing a non-terminal state, the interpreter follows a transition to the next state. For most state types, transitions are unconditional and specified through the state's "Next" field.
 
-모든 비터미널 상태는 선택 상태를 제외한 "다음" 필드가 있어야 합니다. "Next" 필드의 값은 다른 상태의 이름과 정확히 일치해야 합니다.
+All non-terminal states MUST have a "Next" field, except for the Choice State. The value of the "Next" field MUST exactly and case-sensitively match the name of the another state.
 
-주에서는 다른 주에서 여러 차례 전환할 수 있습니다.
+States can have multiple incoming transitions from other states.
 
-### 타임 스탬프
+### Timestamps
 
-선택 및 대기 상태는 타임스탬프를 나타내는 JSON 필드 값을 처리합니다. 이들은 ISO 8601의 [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) 프로파일을 준수해야 하는 문자열이며, 대문자 "T" 문자가 날짜와 시간을 구분하는 데 사용해야 하는 추가 제한 사항과 함께"2016-03-14T011:59:00Z"와 같은 숫자 표준 시간대 오프셋이 없는 경우 대문자 "Z" 문자가 있어야 합니다.
+The Choice and Wait States deal with JSON field values which represent timestamps. These are strings which MUST conform to the [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) profile of ISO 8601, with the further restrictions that an uppercase "T" character MUST be used to separate date and time, and an uppercase "Z" character MUST be present in the absence of a numeric time zone offset, for example "2016-03-14T01:59:00Z".
 
-### 데이터
+### Data
 
-인터프리터는 계산을 수행하거나 상태 컴퓨터의 흐름을 동적으로 제어하기 위해 상태 간에 데이터를 전달합니다. 이러한 모든 데이터는 JSON에 표현되어야 합니다.
+The interpreter passes data between states to perform calculations or to dynamically control the state machine’s flow. All such data MUST be expressed in JSON.
 
-<font _mstmutation="1" _msthash="117052" _msttexthash="11598784834">상태 컴퓨터가 시작되면 호출자는 초기 [JSON 텍스트를](https://tools.ietf.org/html/rfc8259#section-2) 입력으로 제공할 수 있으며, 이 텍스트를 입력으로 컴퓨터의 시작 상태로 전달합니다. 입력이 제공되지 않으면 기본값은 빈 JSON 개체입니다. 각 상태가 실행되면 JSON 텍스트를 입력으로 수신하고 JSON 텍스트여야 하는 임의출력을 생성할 수 있습니다. 두 상태가 전환에 의해 연결되면 첫 번째 상태의 출력이 두 번째 상태로 입력으로 전달됩니다. 기계의 터미널 상태의 출력은 출력으로 처리됩니다.</font> `{}`
+When a state machine is started, the caller can provide an initial [JSON text](https://tools.ietf.org/html/rfc8259#section-2) as input, which is passed to the machine's start state as input. If no input is provided, the default is an empty JSON object, `{}`. As each state is executed, it receives a JSON text as input and can produce arbitrary output, which MUST be a JSON text. When two states are linked by a transition, the output from the first state is passed as input to the second state. The output from the machine's terminal state is treated as its output.
 
-예를 들어 두 숫자를 함께 추가하는 간단한 상태 컴퓨터를 고려하십시오.
+For example, consider a simple state machine that adds two numbers together:
 
     {
       "StartAt": "Add",
@@ -264,27 +264,27 @@
       }
     }
 
-"추가" 람다 함수가 다음과 같이 정의되어 있다고 가정합니다.
+Suppose the "Add" Lambda function is defined as:
 
     exports.handler = function(event, context) {
       context.succeed(event.val1 + event.val2);
     };
 
-<font _mstmutation="1" _msthash="116519" _msttexthash="553283887">그런 다음 이 상태 컴퓨터가 입력으로 시작된 경우 출력은 숫자로 구성된 JSON 텍스트입니다.</font>`{ "val1": 3, "val2": 4 }``7`
+Then if this state machine was started with the input `{ "val1": 3, "val2": 4 }`, then the output would be the JSON text consisting of the number `7`.
 
-JSON 인코딩 된 데이터에 적용되는 일반적인 제약 조건이 적용됩니다. 특히 다음 사항에 유의하십시오.
+The usual constraints applying to JSON-encoded data apply. In particular, note that:
 
-1.  JSON의 숫자는 일반적으로 이중 정밀도 IEEE-854 값에 해당하는 자바스크립트 의미 체계를 준수합니다. 이 및 기타 상호 운용성 우려는 [RFC 8259를](https://tools.ietf.org/html/rfc8259)참조하십시오.
+1.  Numbers in JSON generally conform to JavaScript semantics, typically corresponding to double-precision IEEE-854 values. For this and other interoperability concerns, see [RFC 8259](https://tools.ietf.org/html/rfc8259).
 
-2.  독립 실행형 "제한 문자열, 부울 및 숫자는 유효한 JSON 텍스트입니다.
+2.  Standalone "-delimited strings, booleans, and numbers are valid JSON texts.
 
-### 컨텍스트 개체
+### The Context Object
 
-인터프리터는 실행 상태 컴퓨터에 실행 및 기타 구현 세부 정보에 대한 정보를 제공할 수 있습니다. 이는 "컨텍스트 개체"라는 JSON 개체의 형태로 전달됩니다. 이 버전의 상태 언어 사양은 컨텍스트 개체의 내용을 지정하지 않습니다.
+The interpreter can provide information to an executing state machine about the execution and other implementation details. This is delivered in the form of a JSON object called the "Context Object". This version of the States Language specification does not specify any contents of the Context Object.
 
-### 경로
+### Paths
 
-경로는 JSON 텍스트로 구성 요소를 식별하는 데 사용되는 "$"로 시작하는 문자열입니다. 구문은 [JsonPath의 구문입니다.](https://github.com/jayway/JsonPath)
+A Path is a string, beginning with "$", used to identify components with a JSON text. The syntax is that of [JsonPath](https://github.com/jayway/JsonPath).
 
 When a Path begins with "$", two dollar signs, this signals that it is intended to identify content within the Context Object. The first dollar sign is stripped, and the remaining text, which begins with a dollar sign, is interpreted as the JSONPath applying to the Context Object.
 
@@ -424,11 +424,11 @@ Here is an example of an an Intrinsic Function named "States.Format" being used 
 
 3.  The Intrinsic Function name MUST be followed immediately by a list of zero or more arguments, enclosed by "(" and ")", and separated by commas.
 
-4.  <font _mstmutation="1" _msthash="342134" _msttexthash="10086323">Intrinsic Function arguments may be strings enclosed by apostrophe () characters, numbers, null, Paths, or nested Intrinsic Functions.</font>`'`
+4.  Intrinsic Function arguments may be strings enclosed by apostrophe (`'`) characters, numbers, null, Paths, or nested Intrinsic Functions.
 
 5.  The value of a string, number or null argument is the argument itself. The value of an argument which is a Path is the result of applying it to the input of the Payload Template. The value of an argument which is an Intrinsic Function is the result of the function invocation."
 
-    <font _mstmutation="1" _msthash="342433" _msttexthash="7889947">Note that in the example above, the first argument of could have been a Path that yielded the formatting template string.</font>`States.Format`
+    Note that in the example above, the first argument of `States.Format` could have been a Path that yielded the formatting template string.
 
 6.  The following characters are reserved for all Intrinsic Functions and MUST be escaped: ' { } \
 
@@ -436,19 +436,19 @@ Here is an example of an an Intrinsic Function named "States.Format" being used 
 
     If the character "\" needs to appear as part of the value without serving as an escape character, it MUST be escaped with a backslash.
 
-    <font _mstmutation="1" _msthash="342849" _msttexthash="8942752">The literal string represents .  
-    The literal string represents .  
-    The literal string represents .  
-    The literal string represents .</font> `\'``'``\{``{``\}``}``\\``\`
+    The literal string `\'` represents `'`.  
+    The literal string `\{` represents `{`.  
+    The literal string `\}` represents `}`.  
+    The literal string `\\` represents `\`.
 
     In JSON, all backslashes contained in a string literal value must be escaped with another backslash, therefore, the above will equate to:
 
-    <font _mstmutation="1" _msthash="343083" _msttexthash="8875984">The escaped string represents .  
-    The escaped string represents .  
-    The escaped string represents .  
-    The escaped string represents .</font> `\\'``'``\\{``{``\\}``}``\\\\``\`
+    The escaped string `\\'` represents `'`.  
+    The escaped string `\\{` represents `{`.  
+    The escaped string `\\}` represents `}`.  
+    The escaped string `\\\\` represents `\`.
 
-    <font _mstmutation="1" _msthash="343200" _msttexthash="6397612">If an open escape backslash is found in the Intrinsic Function, the interpreter will throw a runtime error.</font> `\`
+    If an open escape backslash `\` is found in the Intrinsic Function, the interpreter will throw a runtime error.
 
 ### Input and Output Processing
 
@@ -482,7 +482,7 @@ Note that JsonPath can yield multiple values when applied to an input JSON text.
 
     { "a": [1, 2, 3, 4] }
 
-<font _mstmutation="1" _msthash="117624" _msttexthash="24943542">Then if the JsonPath is appplied, the result will be two JSON texts, and . When this happens, to produce the effective input, the interpreter gathers the texts into an array, so in this example the state would see the input:</font>`$.a[0,1]``1``2`
+Then if the JsonPath `$.a[0,1]` is appplied, the result will be two JSON texts, `1` and `2`. When this happens, to produce the effective input, the interpreter gathers the texts into an array, so in this example the state would see the input:
 
     [ 1, 2 ]
 
@@ -496,7 +496,7 @@ The "ResultPath" field’s value is a Reference Path that specifies where to pla
       }
     }
 
-<font _mstmutation="1" _msthash="117091" _msttexthash="6686628">If the state's result is the number , and the "ResultPath" is , then in the output the field would be overwritten:</font>`6``$.master.detail``detail`
+If the state's result is the number `6`, and the "ResultPath" is `$.master.detail`, then in the output the `detail` field would be overwritten:
 
     {
       "master": {
@@ -504,7 +504,7 @@ The "ResultPath" field’s value is a Reference Path that specifies where to pla
       }
     }
 
-<font _mstmutation="1" _msthash="117351" _msttexthash="10032412">If instead a "ResultPath" of was used then the result would be combined with the raw input, producing a chain of new fields containing and :</font>`$.master.result.sum``result``sum`
+If instead a "ResultPath" of `$.master.result.sum` was used then the result would be combined with the raw input, producing a chain of new fields containing `result` and `sum`:
 
     {
       "master": {
@@ -515,11 +515,11 @@ The "ResultPath" field’s value is a Reference Path that specifies where to pla
       }
     }
 
-<font _mstmutation="1" _msthash="117611" _msttexthash="23087779">If the value of InputPath is , that means that the raw input is discarded, and the effective input for the state is an empty JSON object, . Note that having a value of is different from the "InputPath" field being absent.</font>`null``{}``null`
+If the value of InputPath is `null`, that means that the raw input is discarded, and the effective input for the state is an empty JSON object, `{}`. Note that having a value of `null` is different from the "InputPath" field being absent.
 
-<font _mstmutation="1" _msthash="117741" _msttexthash="12840074">If the value of ResultPath is , that means that the state’s result is discarded and its raw input becomes its result.</font>`null`
+If the value of ResultPath is `null`, that means that the state’s result is discarded and its raw input becomes its result.
 
-<font _mstmutation="1" _msthash="117871" _msttexthash="10349495">If the value of OutputPath is , that means the input and result are discarded, and the effective output from the state is an empty JSON object, .</font>`null``{}`
+If the value of OutputPath is `null`, that means the input and result are discarded, and the effective output from the state is an empty JSON object, `{}`.
 
 #### Defaults
 
@@ -531,7 +531,7 @@ Therefore, if none of InputPath, Parameters, ResultSelector, ResultPath, or Outp
 
 #### Input/Output Processing Examples
 
-<font _mstmutation="1" _msthash="117468" _msttexthash="8180757">Consider the example given above, of a Lambda task that sums a pair of numbers. As presented, its input is: and its output is: .</font>`{ "val1": 3, "val2": 4 }``7`
+Consider the example given above, of a Lambda task that sums a pair of numbers. As presented, its input is: `{ "val1": 3, "val2": 4 }` and its output is: `7`.
 
 Suppose the input is little more complex:
 
@@ -545,7 +545,7 @@ Then suppose we modify the state definition by adding:
     "InputPath": "$.numbers",
     "ResultPath": "$.sum"
 
-<font _mstmutation="1" _msthash="118118" _msttexthash="23566192">And finally,suppose we simplify Line 4 of the Lambda function to read as follows: . This is probably a better form of the function, which should really only care about doing math and not care how its result is labeled.</font>`return JSON.stringify(total)`
+And finally,suppose we simplify Line 4 of the Lambda function to read as follows: `return JSON.stringify(total)`. This is probably a better form of the function, which should really only care about doing math and not care how its result is labeled.
 
 In this case, the output would be:
 
@@ -570,7 +570,7 @@ Suppose the output from the Task is "Hi!", and the value of the "ResultPath" fie
 
 #### Runtime Errors
 
-<font _mstmutation="1" _msthash="130676" _msttexthash="24256843">Suppose a state’s input is the string , and its "ResultPath" field has the value "$.x". Then ResultPath cannot apply and the interpreter fails the machine with an Error Name of "States.ResultPathMatchFailure".</font>`"foo"`
+Suppose a state’s input is the string `"foo"`, and its "ResultPath" field has the value "$.x". Then ResultPath cannot apply and the interpreter fails the machine with an Error Name of "States.ResultPathMatchFailure".
 
 ### Errors
 
@@ -713,7 +713,7 @@ Many fields can appear in more than one state type. The table below summarizes w
 
 <td class="blank"></td>
 
-<th align="center" colspan="8" _msthash="878566" _msttexthash="78429">States</th>
+<th align="center" colspan="8">States</th>
 
 </tr>
 
@@ -721,85 +721,85 @@ Many fields can appear in more than one state type. The table below summarizes w
 
 <td class="blank"></td>
 
-<th _msthash="878761" _msttexthash="45097">Task</th>
+<th>Task</th>
 
-<th _msthash="878891" _msttexthash="112333">Parallel</th>
+<th>Parallel</th>
 
-<th _msthash="879021" _msttexthash="30199">Map</th>
+<th>Map</th>
 
-<th _msthash="879151" _msttexthash="45773">Pass</th>
+<th>Pass</th>
 
-<th _msthash="879281" _msttexthash="45370">Wait</th>
+<th>Wait</th>
 
-<th _msthash="879411" _msttexthash="73463">Choice</th>
+<th>Choice</th>
 
-<th _msthash="879541" _msttexthash="91273">Succeed</th>
+<th>Succeed</th>
 
-<th _msthash="879671" _msttexthash="42783">Fail</th>
-
-</tr>
-
-<tr align="center">
-
-<td align="right" class="field" _msthash="878540" _msttexthash="46462">Type</td>
-
-<td align="center" class="required" _msthash="878670" _msttexthash="114465">Required</td>
-
-<td align="center" class="required" _msthash="878800" _msttexthash="114465">Required</td>
-
-<td align="center" class="required" _msthash="878930" _msttexthash="114465">Required</td>
-
-<td align="center" class="required" _msthash="879060" _msttexthash="114465">Required</td>
-
-<td align="center" class="required" _msthash="879190" _msttexthash="114465">Required</td>
-
-<td align="center" class="required" _msthash="879320" _msttexthash="114465">Required</td>
-
-<td align="center" class="required" _msthash="879450" _msttexthash="114465">Required</td>
-
-<td align="center" class="required" _msthash="879580" _msttexthash="114465">Required</td>
+<th>Fail</th>
 
 </tr>
 
 <tr align="center">
 
-<td align="right" class="field" _msthash="878735" _msttexthash="95771">Comment</td>
+<td align="right" class="field">Type</td>
 
-<td align="center" class="allowed" _msthash="878865" _msttexthash="93886">Allowed</td>
+<td align="center" class="required">Required</td>
 
-<td align="center" class="allowed" _msthash="878995" _msttexthash="93886">Allowed</td>
+<td align="center" class="required">Required</td>
 
-<td align="center" class="allowed" _msthash="879125" _msttexthash="93886">Allowed</td>
+<td align="center" class="required">Required</td>
 
-<td align="center" class="allowed" _msthash="879255" _msttexthash="93886">Allowed</td>
+<td align="center" class="required">Required</td>
 
-<td align="center" class="allowed" _msthash="879385" _msttexthash="93886">Allowed</td>
+<td align="center" class="required">Required</td>
 
-<td align="center" class="allowed" _msthash="879515" _msttexthash="93886">Allowed</td>
+<td align="center" class="required">Required</td>
 
-<td align="center" class="allowed" _msthash="879645" _msttexthash="93886">Allowed</td>
+<td align="center" class="required">Required</td>
 
-<td align="center" class="allowed" _msthash="879775" _msttexthash="93886">Allowed</td>
+<td align="center" class="required">Required</td>
 
 </tr>
 
 <tr align="center">
 
-<td align="right" class="field" _msthash="878931" _msttexthash="437164">InputPath, OutputPath</td>
+<td align="right" class="field">Comment</td>
 
-<td align="center" class="allowed" _msthash="879061" _msttexthash="93886">Allowed</td>
+<td align="center" class="allowed">Allowed</td>
 
-<td align="center" class="allowed" _msthash="879191" _msttexthash="93886">Allowed</td>
+<td align="center" class="allowed">Allowed</td>
 
-<td align="center" class="allowed" _msthash="879321" _msttexthash="93886">Allowed</td>
+<td align="center" class="allowed">Allowed</td>
 
-<td align="center" class="allowed" _msthash="879451" _msttexthash="93886">Allowed</td>
+<td align="center" class="allowed">Allowed</td>
 
-<td align="center" class="allowed" _msthash="879581" _msttexthash="93886">Allowed</td>
+<td align="center" class="allowed">Allowed</td>
 
-<td align="center" class="allowed" _msthash="879710" _msttexthash="93886">Allowed</td>
+<td align="center" class="allowed">Allowed</td>
 
-<td align="center" class="allowed" _msthash="879840" _msttexthash="93886">Allowed</td>
+<td align="center" class="allowed">Allowed</td>
+
+<td align="center" class="allowed">Allowed</td>
+
+</tr>
+
+<tr align="center">
+
+<td align="right" class="field">InputPath, OutputPath</td>
+
+<td align="center" class="allowed">Allowed</td>
+
+<td align="center" class="allowed">Allowed</td>
+
+<td align="center" class="allowed">Allowed</td>
+
+<td align="center" class="allowed">Allowed</td>
+
+<td align="center" class="allowed">Allowed</td>
+
+<td align="center" class="allowed">Allowed</td>
+
+<td align="center" class="allowed">Allowed</td>
 
 <td align="center" class="empty"></td>
 
@@ -807,39 +807,17 @@ Many fields can appear in more than one state type. The table below summarizes w
 
 <tr align="center">
 
-<td align="right" class="field" _msthash="879126" _msttexthash="466102">_One of:_ Next _or_ "End":true</td>
+<td align="right" class="field">_One of:_ Next _or_ "End":true</td>
 
-<td align="center" class="required" _msthash="879256" _msttexthash="114465">Required</td>
+<td align="center" class="required">Required</td>
 
-<td align="center" class="required" _msthash="879386" _msttexthash="114465">Required</td>
+<td align="center" class="required">Required</td>
 
-<td align="center" class="required" _msthash="879516" _msttexthash="114465">Required</td>
+<td align="center" class="required">Required</td>
 
-<td align="center" class="required" _msthash="879646" _msttexthash="114465">Required</td>
+<td align="center" class="required">Required</td>
 
-<td align="center" class="required" _msthash="879776" _msttexthash="114465">Required</td>
-
-<td align="center" class="empty"></td>
-
-<td align="center" class="empty"></td>
-
-<td align="center" class="empty"></td>
-
-</tr>
-
-<tr align="center">
-
-<td align="right" class="field" _msthash="879322" _msttexthash="155597">ResultPath</td>
-
-<td align="center" class="allowed" _msthash="879452" _msttexthash="93886">Allowed</td>
-
-<td align="center" class="allowed" _msthash="879582" _msttexthash="93886">Allowed</td>
-
-<td align="center" class="allowed" _msthash="879711" _msttexthash="93886">Allowed</td>
-
-<td align="center" class="allowed" _msthash="879841" _msttexthash="93886">Allowed</td>
-
-<td align="center" class="empty"></td>
+<td align="center" class="required">Required</td>
 
 <td align="center" class="empty"></td>
 
@@ -851,15 +829,15 @@ Many fields can appear in more than one state type. The table below summarizes w
 
 <tr align="center">
 
-<td align="right" class="field" _msthash="879517" _msttexthash="158795">Parameters</td>
+<td align="right" class="field">ResultPath</td>
 
-<td align="center" class="allowed" _msthash="879647" _msttexthash="93886">Allowed</td>
+<td align="center" class="allowed">Allowed</td>
 
-<td align="center" class="allowed" _msthash="879777" _msttexthash="93886">Allowed</td>
+<td align="center" class="allowed">Allowed</td>
 
-<td align="center" class="allowed" _msthash="879905" _msttexthash="93886">Allowed</td>
+<td align="center" class="allowed">Allowed</td>
 
-<td align="center" class="allowed" _msthash="880035" _msttexthash="93886">Allowed</td>
+<td align="center" class="allowed">Allowed</td>
 
 <td align="center" class="empty"></td>
 
@@ -873,13 +851,35 @@ Many fields can appear in more than one state type. The table below summarizes w
 
 <tr align="center">
 
-<td align="right" class="field" _msthash="879712" _msttexthash="260728">ResultSelector</td>
+<td align="right" class="field">Parameters</td>
 
-<td align="center" class="allowed" _msthash="879842" _msttexthash="93886">Allowed</td>
+<td align="center" class="allowed">Allowed</td>
 
-<td align="center" class="allowed" _msthash="879970" _msttexthash="93886">Allowed</td>
+<td align="center" class="allowed">Allowed</td>
 
-<td align="center" class="allowed" _msthash="880100" _msttexthash="93886">Allowed</td>
+<td align="center" class="allowed">Allowed</td>
+
+<td align="center" class="allowed">Allowed</td>
+
+<td align="center" class="empty"></td>
+
+<td align="center" class="empty"></td>
+
+<td align="center" class="empty"></td>
+
+<td align="center" class="empty"></td>
+
+</tr>
+
+<tr align="center">
+
+<td align="right" class="field">ResultSelector</td>
+
+<td align="center" class="allowed">Allowed</td>
+
+<td align="center" class="allowed">Allowed</td>
+
+<td align="center" class="allowed">Allowed</td>
 
 <td align="center" class="empty"></td>
 
@@ -895,13 +895,13 @@ Many fields can appear in more than one state type. The table below summarizes w
 
 <tr align="center">
 
-<td align="right" class="field" _msthash="879906" _msttexthash="165698">Retry, Catch</td>
+<td align="right" class="field">Retry, Catch</td>
 
-<td align="center" class="allowed" _msthash="880036" _msttexthash="93886">Allowed</td>
+<td align="center" class="allowed">Allowed</td>
 
-<td align="center" class="allowed" _msthash="880165" _msttexthash="93886">Allowed</td>
+<td align="center" class="allowed">Allowed</td>
 
-<td align="center" class="allowed" _msthash="880295" _msttexthash="93886">Allowed</td>
+<td align="center" class="allowed">Allowed</td>
 
 <td align="center" class="empty"></td>
 
@@ -921,7 +921,7 @@ Many fields can appear in more than one state type. The table below summarizes w
 
 ### Pass State
 
-<font _mstmutation="1" _msthash="149318" _msttexthash="4891302">The Pass State (identified by ) by default passes its input to its output, performing no work.</font>`"Type":"Pass"`
+The Pass State (identified by `"Type":"Pass"`) by default passes its input to its output, performing no work.
 
 A Pass State MAY have a field named "Result". If present, its value is treated as the output of a virtual task, and placed as prescribed by the "ResultPath" field, if any, to be passed on to the next state. If "Result" is not provided, the output is the input. Thus if neither "Result" nor "ResultPath" are provided, the Pass State copies its input through to its output.
 
@@ -955,7 +955,7 @@ Then the output would be:
 
 ### Task State
 
-<font _mstmutation="1" _msthash="165451" _msttexthash="16924141">The Task State (identified by ) causes the interpreter to execute the work identified by the state’s "Resource" field.</font>`"Type":"Task"`
+The Task State (identified by `"Type":"Task"`) causes the interpreter to execute the work identified by the state’s "Resource" field.
 
 Here is an example:
 
@@ -980,11 +980,11 @@ If provided, the "HeartbeatSeconds" interval MUST be smaller than the "TimeoutSe
 
 If not provided, the default value of "TimeoutSeconds" is 60.
 
-<font _mstmutation="1" _msthash="165438" _msttexthash="19605833">If the state runs longer than the specified timeout, or if more time than the specified heartbeat elapses between heartbeats from the task, then the interpreter fails the state with a Error Name.</font>`States.Timeout`
+If the state runs longer than the specified timeout, or if more time than the specified heartbeat elapses between heartbeats from the task, then the interpreter fails the state with a `States.Timeout` Error Name.
 
 ### Choice State
 
-<font _mstmutation="1" _msthash="165698" _msttexthash="2893982">A Choice State (identified by ) adds branching logic to a state machine.</font> `"Type":"Choice"`
+A Choice State (identified by `"Type":"Choice"`) adds branching logic to a state machine.
 
 A Choice State MUST have a "Choices" field whose value is a non-empty array. Each element of the array MUST be a JSON object and is called a Choice Rule. A Choice Rule may be evaluated to return a boolean value. A Choice Rule at the top level, i.e. which is a member of the "Choices" array, MUST have a "Next" field, whose value MUST match a state name.
 
@@ -1067,21 +1067,21 @@ Each choice rule MUST contain exactly one field containing a comparison operator
 
 6.  StringMatches
 
-    <font _mstmutation="1" _msthash="420160" _msttexthash="54046668">Note: The value MUST be a String which MAY contain one or more "*" characters. The expression yields true if the data value selected by the Variable Path matches the value, where "*" in the value matches zero or more characters. Thus, matches , matches , and matches . No characters other than "*" have any special meaning during matching.</font>`foo*.log``foo23.log``*.log``zebra.log``foo*.*``foobar.zebra`
+    Note: The value MUST be a String which MAY contain one or more "*" characters. The expression yields true if the data value selected by the Variable Path matches the value, where "*" in the value matches zero or more characters. Thus, `foo*.log` matches `foo23.log`, `*.log` matches `zebra.log`, and `foo*.*` matches `foobar.zebra`. No characters other than "*" have any special meaning during matching.
 
     If the character "*" needs to appear as part of the value without serving as a wildcard, it MUST be escaped with a backslash.
 
     If the character "\" needs to appear as part of the value without serving as an escape character, it MUST be escaped with a backslash.
 
-    <font _mstmutation="1" _msthash="420511" _msttexthash="2473484">The literal string represents .  
-    The literal string represents .</font> `\*``*``\\``\`
+    The literal string `\*` represents `*`.  
+    The literal string `\\` represents `\`.
 
     In JSON, all backslashes contained in a string literal value must be escaped with another backslash, therefore, the above will equate to:
 
-    <font _mstmutation="1" _msthash="420745" _msttexthash="2456948">The escaped string represents .  
-    The escaped string represents .</font> `\\*``*``\\\\``\`
+    The escaped string `\\*` represents `*`.  
+    The escaped string `\\\\` represents `\`.
 
-    <font _mstmutation="1" _msthash="420862" _msttexthash="6671990">If an open escape backslash is found in the StringMatches string, the interpreter will throw a runtime error.</font> `\`
+    If an open escape backslash `\` is found in the StringMatches string, the interpreter will throw a runtime error.
 
 7.  NumericEquals, NumericEqualsPath
 
@@ -1107,7 +1107,7 @@ Each choice rule MUST contain exactly one field containing a comparison operator
 
 18.  IsNull
 
-    <font _mstmutation="1" _msthash="445978" _msttexthash="1819857">Note: This means the value is the built-in JSON literal .</font>`null`
+    Note: This means the value is the built-in JSON literal `null`.
 
 19.  IsPresent
 
@@ -1135,7 +1135,7 @@ A Choice State MUST NOT be an End state.
 
 ### Wait State
 
-<font _mstmutation="1" _msthash="165139" _msttexthash="36652369">A Wait State (identified by ) causes the interpreter to delay the machine from continuing for a specified time. The time can be specified as a wait duration, specified in seconds, or an absolute expiry time, specified as an ISO-8601 extended offset date-time format string.</font>`"Type":"Wait"`
+A Wait State (identified by `"Type":"Wait"`) causes the interpreter to delay the machine from continuing for a specified time. The time can be specified as a wait duration, specified in seconds, or an absolute expiry time, specified as an ISO-8601 extended offset date-time format string.
 
 For example, the following Wait State introduces a ten-second delay into a state machine:
 
@@ -1153,7 +1153,7 @@ This waits until an absolute time:
       "Next": "NextState"
     }
 
-<font _mstmutation="1" _msthash="165789" _msttexthash="14712750">The wait duration does not need to be hardcoded. Here is the same example, reworked to look up the timestamp time using a Reference Path to the data, which might look like :</font>`{ "expirydate": "2016-03-14T01:59:00Z" }`
+The wait duration does not need to be hardcoded. Here is the same example, reworked to look up the timestamp time using a Reference Path to the data, which might look like `{ "expirydate": "2016-03-14T01:59:00Z" }`:
 
     "wait_until" : {
         "Type": "Wait",
@@ -1165,7 +1165,7 @@ A Wait State MUST contain exactly one of "Seconds", "SecondsPath", "Timestamp", 
 
 ### Succeed State
 
-<font _mstmutation="1" _msthash="166309" _msttexthash="33661784">The Succeed State (identified by ) either terminates a state machine successfully, ends a branch of a Parallel State, or ends an iteration of a Map State. The output of a Succeed State is the same as its input, possibly modified by "InputPath" and/or "OutputPath".</font>`"Type":"Succeed"`
+The Succeed State (identified by `"Type":"Succeed"`) either terminates a state machine successfully, ends a branch of a Parallel State, or ends an iteration of a Map State. The output of a Succeed State is the same as its input, possibly modified by "InputPath" and/or "OutputPath".
 
 The Succeed State is a useful target for Choice-State branches that don't do anything except terminate the machine.
 
@@ -1179,7 +1179,7 @@ Because Succeed States are terminal states, they have no "Next" field.
 
 ### Fail State
 
-<font _mstmutation="1" _msthash="165906" _msttexthash="3584997">The Fail State (identified by ) terminates the machine and marks it as a failure.</font> `"Type":"Fail"`
+The Fail State (identified by `"Type":"Fail"`) terminates the machine and marks it as a failure.
 
 Here is an example:
 
@@ -1195,7 +1195,7 @@ Because Fail States are terminal states, they have no "Next" field.
 
 ### Parallel State
 
-<font _mstmutation="1" _msthash="165503" _msttexthash="3361813">The Parallel State (identified by ) causes parallel execution of "branches".</font>`"Type":"Parallel"`
+The Parallel State (identified by `"Type":"Parallel"`) causes parallel execution of "branches".
 
 Here is an example:
 
@@ -1275,13 +1275,13 @@ For example, consider the following Parallel State:
       "Next": "NextState"
     }
 
-<font _mstmutation="1" _msthash="166140" _msttexthash="30945356">If the "FunWithMath" state was given the JSON array as input, then both the "Add" and "Subtract" states would receive that array as input. The output of "Add" would be , that of "Subtract" would be , and the output of the Parallel State would be a JSON array:</font>`[3, 2]``5``1`
+If the "FunWithMath" state was given the JSON array `[3, 2]` as input, then both the "Add" and "Subtract" states would receive that array as input. The output of "Add" would be `5`, that of "Subtract" would be `1`, and the output of the Parallel State would be a JSON array:
 
     [ 5, 1 ]
 
 ### Map State
 
-<font _mstmutation="1" _msthash="166530" _msttexthash="35207120">The Map State (identified by ) causes the interpreter to process all the elements of an array, potentially in parallel, with the processing of each element independent of the others. This document uses the term "iteration" to describe each such nested execution.</font>`"Type": "Map"`
+The Map State (identified by `"Type": "Map"`) causes the interpreter to process all the elements of an array, potentially in parallel, with the processing of each element independent of the others. This document uses the term "iteration" to describe each such nested execution.
 
 The Parallel State applies multiple different state-machine branches to the same input, while the Map State applies a single state machine to multiple input elements.
 
@@ -1424,15 +1424,15 @@ Unlike a Fail State, a Succeed State within a Map merely terminates its own iter
 
 <tr>
 
-<th _msthash="1086332" _msttexthash="42471">Code</th>
+<th>Code</th>
 
-<th _msthash="1086462" _msttexthash="183612">Description</th>
+<th>Description</th>
 
 </tr>
 
 <tr>
 
-<td _msthash="1086111" _msttexthash="128661">States.ALL</td>
+<td>States.ALL</td>
 
 <td>
 
@@ -1444,7 +1444,7 @@ A wildcard which matches any Error Name.
 
 <tr>
 
-<td _msthash="1086306" _msttexthash="554359">States.HeartbeatTimeout</td>
+<td>States.HeartbeatTimeout</td>
 
 <td>
 
@@ -1456,7 +1456,7 @@ A Task State failed to heartbeat for a time longer than the "HeartbeatSeconds" v
 
 <tr>
 
-<td _msthash="1086501" _msttexthash="251992">States.Timeout</td>
+<td>States.Timeout</td>
 
 <td>
 
@@ -1468,7 +1468,7 @@ A Task State either ran longer than the "TimeoutSeconds" value, or failed to hea
 
 <tr>
 
-<td _msthash="1086696" _msttexthash="323882">States.TaskFailed</td>
+<td>States.TaskFailed</td>
 
 <td>
 
@@ -1480,7 +1480,7 @@ A Task State failed during the execution.
 
 <tr>
 
-<td _msthash="1086891" _msttexthash="380315">States.Permissions</td>
+<td>States.Permissions</td>
 
 <td>
 
@@ -1492,7 +1492,7 @@ A Task State failed because it had insufficient privileges to execute the specif
 
 <tr>
 
-<td _msthash="1087086" _msttexthash="801437">States.ResultPathMatchFailure</td>
+<td>States.ResultPathMatchFailure</td>
 
 <td>
 
@@ -1504,7 +1504,7 @@ A state’s "ResultPath" field cannot be applied to the input the state received
 
 <tr>
 
-<td _msthash="1087281" _msttexthash="712140">States.ParameterPathFailure</td>
+<td>States.ParameterPathFailure</td>
 
 <td>
 
@@ -1516,7 +1516,7 @@ Within a state’s "Parameters" field, the attempt to replace a field whose name
 
 <tr>
 
-<td _msthash="1087476" _msttexthash="384800">States.BranchFailed</td>
+<td>States.BranchFailed</td>
 
 <td>
 
@@ -1528,7 +1528,7 @@ A branch of a Parallel State failed.
 
 <tr>
 
-<td _msthash="1087671" _msttexthash="490581">States.NoChoiceMatched</td>
+<td>States.NoChoiceMatched</td>
 
 <td>
 
@@ -1540,7 +1540,7 @@ A Choice State failed to find a match for the condition field extracted from its
 
 <tr>
 
-<td _msthash="1129804" _msttexthash="551343">States.IntrinsicFailure</td>
+<td>States.IntrinsicFailure</td>
 
 <td>
 
@@ -1558,11 +1558,11 @@ Within a Payload Template, the attempt to invoke an Intrinsic Function failed.
 
 #### States.Format
 
-<font _mstmutation="1" _msthash="245661" _msttexthash="85367230">This Intrinsic Function takes one or more arguments. The Value of the first MUST be a string, which MAY include zero or more instances of the character sequence . There MUST be as many remaining arguments in the Intrinsic Function as there are occurrences of . The interpreter returns the first-argument string with each replaced by the Value of the positionally-corresponding argument in the Intrinsic Function.</font>`{}``{}``{}`
+This Intrinsic Function takes one or more arguments. The Value of the first MUST be a string, which MAY include zero or more instances of the character sequence `{}`. There MUST be as many remaining arguments in the Intrinsic Function as there are occurrences of `{}`. The interpreter returns the first-argument string with each `{}` replaced by the Value of the positionally-corresponding argument in the Intrinsic Function.
 
-<font _mstmutation="1" _msthash="245778" _msttexthash="2768116">If necessary, the and characters can be escaped respectively as and .</font>`{``}``\\{``\\}`
+If necessary, the `{` and `}` characters can be escaped respectively as `\\{` and `\\}`.
 
-<font _mstmutation="1" _msthash="245895" _msttexthash="36606037">If the argument is a Path, applying it to the input MUST yield a value that is a string, a boolean, a number, or . In each case, the Value is the natural string representation; string values are not accompanied by enclosing characters. The Value MUST NOT be a JSON array or object.</font>`null``"`
+If the argument is a Path, applying it to the input MUST yield a value that is a string, a boolean, a number, or `null`. In each case, the Value is the natural string representation; string values are not accompanied by enclosing `"` characters. The Value MUST NOT be a JSON array or object.
 
 For example, given the following Payload Template:
 
