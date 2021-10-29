@@ -281,3 +281,8 @@ defaults:
       share: true
       related: true
       show_date: true # add YSU
+  # _images
+  - scope:
+      path: "_images"
+    values:
+      image: true
