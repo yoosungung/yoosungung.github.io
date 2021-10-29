@@ -284,7 +284,6 @@ defaults:
       show_date: true # add YSU
   # _images
   - scope:
-      path: ""
-      type: "images"
+      path: "images"
     values:
       image: true
