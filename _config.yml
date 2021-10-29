@@ -146,6 +146,7 @@ footer:
 include:
   - .htaccess
   - _pages
+  - _images
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
@@ -283,6 +284,7 @@ defaults:
       show_date: true # add YSU
   # _images
   - scope:
-      path: "images"
+      path: ""
+      type: "images"
     values:
       image: true
